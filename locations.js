@@ -74,7 +74,7 @@ const locations = [
         rating: 5,        // Tvoje hodnotenie 0-5
         color: pizza,
         photos: [
-            "https://imgur.com/a/QoV1UeW",
+            "https://ibb.co/Ng1Cbn7G",
             "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=500",
             "https://images.unsplash.com/photo-1552566626-52f8b828add9?w=500",
             "https://images.unsplash.com/photo-1552566626-52f8b828add9?w=500"
