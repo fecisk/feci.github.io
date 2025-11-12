@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="sk">
 <head>
     <meta charset="UTF-8">
@@ -71,7 +70,6 @@
         <!-- Akčné tlačidlá -->
         <div class="sidebar-controls">
             <button onclick="resetFilters()"><i class="fas fa-redo"></i> Resetovať filtre</button>
-            <!--<button onclick="applyFilters()"><i class="fas fa-check"></i> Použiť filtre</button>-->
         </div>
     </div>
 
@@ -102,6 +100,15 @@
                 <div id="photo-gallery" class="photo-gallery"></div>
             </div>
         </div>
+    </div>
+
+    <!-- Lightbox pre fotogalériu -->
+    <div id="lightbox" class="lightbox">
+        <button class="lightbox-close" id="lightbox-close-btn"><i class="fas fa-times"></i></button>
+        <button class="lightbox-prev" id="lightbox-prev-btn"><i class="fas fa-chevron-left"></i></button>
+        <button class="lightbox-next" id="lightbox-next-btn"><i class="fas fa-chevron-right"></i></button>
+        <img id="lightbox-image" src="" alt="Fotografia">
+        <div class="lightbox-counter" id="lightbox-counter"></div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>

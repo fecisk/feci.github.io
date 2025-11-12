@@ -22,12 +22,12 @@ let searchQuery = '';
 
 // Ikony pre kategórie
 const categoryIcons = {
-    'Vietnam': 'fa-bowl-food',
-    'Burger' : 'fa-burger',
-    'Pizza' : 'fa-pizza-slice',
-    'India' : 'fa-pepper-hot',
-    'Kaviareň' : 'fa-coffee',
-    'Zmrzlina' : 'fa-ice-cream',
+    'Reštaurácie': 'fa-utensils',
+    'Kaviarne': 'fa-coffee',
+    'Pamiatky': 'fa-landmark',
+    'Kultúra': 'fa-theater-masks',
+    'Šport': 'fa-dumbbell',
+    'Príroda': 'fa-tree',
     'default': 'fa-map-marker-alt'
 };
 
@@ -123,6 +123,22 @@ function addMarker(location, index) {
             </button>
         </div>
     `;
+
+        // Event keď sa otvorí popup - skryť hodnotenie
+    marker.on('popupopen', function() {
+        const ratingElement = marker.getElement().querySelector('.marker-rating');
+        if (ratingElement) {
+            ratingElement.style.display = 'none';
+        }
+    });
+
+    // Event keď sa zatvorí popup - zobraziť hodnotenie
+    marker.on('popupclose', function() {
+        const ratingElement = marker.getElement().querySelector('.marker-rating');
+        if (ratingElement) {
+            ratingElement.style.display = 'block';
+        }
+    });
     
     marker.bindPopup(popupContent);
     markers[index] = marker;
@@ -270,6 +286,38 @@ function prevPhoto() {
     document.getElementById('lightbox-image').src = currentPhotos[currentPhotoIndex];
     document.getElementById('lightbox-counter').textContent = `${currentPhotoIndex + 1} / ${currentPhotos.length}`;
 }
+
+// Event listenery pre lightbox
+document.addEventListener('DOMContentLoaded', function() {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightbox-image');
+    const closeBtn = document.getElementById('lightbox-close-btn');
+    const prevBtn = document.getElementById('lightbox-prev-btn');
+    const nextBtn = document.getElementById('lightbox-next-btn');
+    
+    // Zatvorenie pri kliknutí na pozadie
+    lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox) {
+            closeLightbox();
+        }
+    });
+    
+    // Zabráň zatvoreniu pri kliknutí na obrázok
+    lightboxImage.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+    
+    // Tlačidlá
+    closeBtn.addEventListener('click', closeLightbox);
+    prevBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        prevPhoto();
+    });
+    nextBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        nextPhoto();
+    });
+});
 
 // Klávesové skratky pre lightbox
 document.addEventListener('keydown', function(e) {
@@ -440,6 +488,9 @@ function selectSearchResult(locationIndex) {
     
     // Otvor popup markera
     marker.openPopup();
+    
+    // Skry výsledky
+    hideSearchResults();
     
     clearSearch();
 }
