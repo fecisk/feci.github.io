@@ -65,6 +65,21 @@ const locations = [
             "https://images.unsplash.com/photo-1552566626-52f8b828add9?w=500"
         ]
     },
+    {
+        name: "Včielka",
+        coords: [48.672342642213174, 21.312238122231744],
+        description: "Pizza pub",
+        category: "Pizza",
+        price: "€€",        // € = lacné, €€ = stredné, €€€ = drahé
+        rating: 5,        // Tvoje hodnotenie 0-5
+        color: pizza,
+        photos: [
+            "https://imgur.com/a/QoV1UeW",
+            "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=500",
+            "https://images.unsplash.com/photo-1552566626-52f8b828add9?w=500",
+            "https://images.unsplash.com/photo-1552566626-52f8b828add9?w=500"
+        ]
+    },
     
     // Formát pre pridávanie nových lokácií:
     // {
@@ -80,4 +95,5 @@ const locations = [
     //         "url_fotky2"
     //     ]
     // }
+
 ];
