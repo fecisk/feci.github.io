@@ -376,8 +376,6 @@ function locateUser() {
                     })
                 }).addTo(map);
                 
-                userMarker.bindPopup('<strong>Tvoja poloha</strong>').openPopup();
-                
                 // Vycentruj mapu na používateľa
                 map.setView([userLat, userLng], 15);
             },
@@ -515,4 +513,5 @@ map.scrollWheelZoom.enable();
 // Event listener pre zmenu veľkosti okna
 window.addEventListener('resize', function() {
     map.invalidateSize();
+
 });
