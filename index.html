@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa miest - Košice</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Tlačidlo na otvorenie filtra -->
+    <button class="filter-toggle" onclick="toggleFilter()">
+        <i class="fas fa-filter"></i> Filtre
+    </button>
+
+    <!-- Vyhľadávací bar -->
+    <div class="search-bar">
+        <i class="fas fa-search"></i>
+        <input type="text" id="search-input" placeholder="Vyhľadaj miesto podľa názvu...">
+        <button id="clear-search" onclick="clearSearch()">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <!-- Výsledky vyhľadávania -->
+    <div id="search-results" class="search-results"></div>
+
+    <!-- Bočné menu s filtrami -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>Filtre miest</h2>
+            <button class="close-sidebar" onclick="toggleFilter()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <!-- Filter kategórií -->
+        <div class="filter-section">
+            <h3><i class="fas fa-tags"></i> Kategórie</h3>
+            <div id="categories"></div>
+        </div>
+
+        <!-- Filter ceny -->
+        <div class="filter-section">
+            <h3><i class="fas fa-euro-sign"></i> Cenová kategória</h3>
+            <div class="price-filters">
+                <label>
+                    <input type="checkbox" checked data-price="€"> € (Lacné)
+                </label>
+                <label>
+                    <input type="checkbox" checked data-price="€€"> €€ (Stredné)
+                </label>
+                <label>
+                    <input type="checkbox" checked data-price="€€€"> €€€ (Drahé)
+                </label>
+            </div>
+        </div>
+
+        <!-- Filter hodnotenia -->
+        <div class="filter-section">
+            <h3><i class="fas fa-star"></i> Minimálne hodnotenie</h3>
+            <div class="rating-filter">
+                <input type="range" id="rating-slider" min="0" max="5" value="0" step="0.5">
+                <div class="rating-value">
+                    <span id="rating-value-text">0</span> <i class="fas fa-star"></i> a viac
+                </div>
+            </div>
+        </div>
+
+        <!-- Akčné tlačidlá -->
+        <div class="sidebar-controls">
+            <button onclick="resetFilters()"><i class="fas fa-redo"></i> Resetovať filtre</button>
+            <!--<button onclick="applyFilters()"><i class="fas fa-check"></i> Použiť filtre</button>-->
+        </div>
+    </div>
+
+    <!-- Mapa -->
+    <div id="map"></div>
+    
+    <!-- Ovládacie tlačidlá -->
+    <div class="controls">
+        <button onclick="centerMap()"><i class="fas fa-compress"></i></button>
+        <button onclick="locateUser()"><i class="fas fa-location-arrow"></i></button>
+    </div>
+
+    <!-- Detail miesta (podstránka) -->
+    <div id="detail-page" class="detail-page hidden">
+        <button class="close-btn" onclick="closeDetail()"><i class="fas fa-times"></i></button>
+        <div class="detail-content">
+            <h1 id="detail-name"></h1>
+            <div class="detail-meta">
+                <span id="detail-category" class="detail-category"></span>
+                <span id="detail-price" class="detail-price"></span>
+                <span id="detail-rating" class="detail-rating"></span>
+            </div>
+            <p id="detail-description"></p>
+
+            <!-- Fotogaléria -->
+            <div class="gallery-section">
+                <h3>Fotogaléria</h3>
+                <div id="photo-gallery" class="photo-gallery"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    <script src="locations.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
