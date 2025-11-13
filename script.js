@@ -33,8 +33,15 @@ const categoryIcons = {
 
 // Získanie kategórií z lokácií
 function getCategories() {
-    const categories = [...new Set(locations.map(loc => loc.category))];
-    return categories;
+    const categoriesSet = new Set();
+    locations.forEach(loc => {
+        if (Array.isArray(loc.category)) {
+            loc.category.forEach(cat => categoriesSet.add(cat));
+        } else {
+            categoriesSet.add(loc.category);
+        }
+    });
+    return [...categoriesSet];
 }
 
 // Vytvorenie checkboxov pre kategórie
@@ -111,7 +118,15 @@ function addMarker(location, index) {
         <div class="custom-popup">
             <strong>${location.name}</strong>
             <div class="popup-meta">
-                <span class="popup-badge category-badge">${location.category}</span>
+                ${Array.isArray(location.category) 
+                    ? location.category.map((cat, idx) => {
+                        const catColor = location.categoryColors && location.categoryColors[idx] 
+                            ? location.categoryColors[idx] 
+                            : location.color;
+                        return `<span class="popup-badge category-badge" style="background: ${catColor}; color: white;">${cat}</span>`;
+                    }).join('')
+                    : `<span class="popup-badge category-badge" style="background: ${location.color}; color: white;">${location.category}</span>`
+                }
                 <span class="popup-badge price-badge">${location.price}</span>
                 <span class="popup-badge rating-badge">
                     ${location.rating.toFixed(1)} <i class="fas fa-star"></i>
@@ -169,7 +184,9 @@ function applyFilters() {
         const marker = markers[id];
         const location = marker.locationData;
         
-        const categoryMatch = activeCategories.includes(location.category);
+        const categoryMatch = Array.isArray(location.category) 
+            ? location.category.some(cat => activeCategories.includes(cat))
+            : activeCategories.includes(location.category);
         const priceMatch = activePrices.includes(location.price);
         const ratingMatch = location.rating >= minRating;
         
@@ -206,7 +223,31 @@ function showDetail(locationId) {
     const location = locations[locationId];
     
     document.getElementById('detail-name').textContent = location.name;
-    document.getElementById('detail-category').textContent = location.category;
+    
+    // Kategórie
+    const categoriesContainer = document.getElementById('detail-categories');
+    categoriesContainer.innerHTML = '';
+    if (Array.isArray(location.category)) {
+        location.category.forEach((cat, idx) => {
+            const badge = document.createElement('span');
+            badge.className = 'detail-category-badge';
+            badge.textContent = cat;
+            const catColor = location.categoryColors && location.categoryColors[idx] 
+                ? location.categoryColors[idx] 
+                : location.color;
+            badge.style.background = catColor;
+            badge.style.color = 'white';
+            categoriesContainer.appendChild(badge);
+        });
+    } else {
+        const badge = document.createElement('span');
+        badge.className = 'detail-category-badge';
+        badge.textContent = location.category;
+        badge.style.background = location.color;
+        badge.style.color = 'white';
+        categoriesContainer.appendChild(badge);
+    }
+    
     document.getElementById('detail-price').textContent = location.price;
     
     const stars = '<i class="fas fa-star"></i>'.repeat(Math.floor(location.rating)) + 
@@ -215,10 +256,8 @@ function showDetail(locationId) {
     
     document.getElementById('detail-description').textContent = location.description;
     
-    // Načítanie fotogalérie
     loadGallery(location.photos);
     
-    // Zobrazenie stránky
     document.getElementById('detail-page').classList.remove('hidden');
 }
 
@@ -456,7 +495,15 @@ function showSearchResults() {
                 <div class="search-result-info">
                     <div class="search-result-name">${location.name}</div>
                     <div class="search-result-meta">
-                        <span class="search-result-badge category">${location.category}</span>
+                        ${Array.isArray(location.category)
+                            ? location.category.map((cat, idx) => {
+                                const catColor = location.categoryColors && location.categoryColors[idx]
+                                    ? location.categoryColors[idx]
+                                    : location.color;
+                                return `<span class="search-result-badge category" style="background: ${catColor}; color: white;">${cat}</span>`;
+                            }).join('')
+                            : `<span class="search-result-badge category" style="background: ${location.color}; color: white;">${location.category}</span>`
+                        }
                         <span class="search-result-badge price">${location.price}</span>
                         <span class="search-result-badge rating">
                             ${location.rating.toFixed(1)} <i class="fas fa-star"></i>

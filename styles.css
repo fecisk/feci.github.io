@@ -729,6 +729,22 @@ body {
     z-index: 3002;
 }
 
+.detail-categories {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.detail-category-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
 /* Responzívny dizajn */
 @media (max-width: 768px) {
     .sidebar {

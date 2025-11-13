@@ -85,13 +85,12 @@ const locations = [
         name: "Deal",
         coords: [48.67800314911633, 21.297966258446433],
         description: "Proste Deal",
-        category: "Pizza",
-        category: "Burger",
+        category: ["Pizza", "Burger"],
+        categoryColors: [pizza, burgir],
         price: "€€",        // € = lacné, €€ = stredné, €€€ = drahé
         rating: 2,        // Tvoje hodnotenie 0-5
         color: burgir,
         photos: [
-            "https://i.ibb.co/rKb0NfvX/stiahnu.jpg",
             "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=500",
             "https://images.unsplash.com/photo-1552566626-52f8b828add9?w=500",
             "https://images.unsplash.com/photo-1552566626-52f8b828add9?w=500"
@@ -103,7 +102,7 @@ const locations = [
     //     name: "Názov miesta",
     //     coords: [zemepisná_šírka, zemepisná_dĺžka],
     //     description: "Podrobný popis miesta",
-    //     category: "Kategória",      // Reštaurácie, Kaviarne, Pamiatky, Kultúra, Šport, Príroda
+    //     category: "Kategória",   / ["kat1", "kat2"]   // Reštaurácie, Kaviarne, Pamiatky, Kultúra, Šport, Príroda
     //     price: "€€",                // €, €€, alebo €€€
     //     rating: 4.5,                // Tvoje hodnotenie 0-5 (môže byť aj 0.5, 1.5, atď.)
     //     color: "#hex_farba",
