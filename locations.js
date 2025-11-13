@@ -3,6 +3,7 @@
 const viet = '#00674F'
 const pizza = '#E86F30'
 const zmrz = '#FFB6C1'
+const burgir = '#cd853f'
 
 const locations = [
     {
@@ -80,6 +81,22 @@ const locations = [
             "https://images.unsplash.com/photo-1552566626-52f8b828add9?w=500"
         ]
     },
+    {
+        name: "Deal",
+        coords: [48.67800314911633, 21.297966258446433],
+        description: "Proste Deal",
+        category: "Pizza",
+        category: "Burger",
+        price: "€€",        // € = lacné, €€ = stredné, €€€ = drahé
+        rating: 2,        // Tvoje hodnotenie 0-5
+        color: burgir,
+        photos: [
+            "https://i.ibb.co/rKb0NfvX/stiahnu.jpg",
+            "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=500",
+            "https://images.unsplash.com/photo-1552566626-52f8b828add9?w=500",
+            "https://images.unsplash.com/photo-1552566626-52f8b828add9?w=500"
+        ]
+    },
     
     // Formát pre pridávanie nových lokácií:
     // {
@@ -97,3 +114,4 @@ const locations = [
     // }
 
 ];
+
