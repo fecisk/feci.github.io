@@ -736,17 +736,18 @@ body {
     
     .search-bar {
         top: 10px;
-        max-width: calc(80% - 20px);
-        left: 50%;
+        max-width: calc(100% - 80px);
+        left: 52%;
     }
     
     .search-results {
         top: 65px;
-        max-width: calc(80% - 20px);
+        max-width: calc(100% - 80px);
+        left: 52%;
     }
     
     .controls {
-        bottom: 10px;
+        bottom: 15px;
         right: 10px;
         flex-direction: row;
     }
