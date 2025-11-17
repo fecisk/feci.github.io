@@ -254,6 +254,8 @@ function showDetail(locationId) {
                   (location.rating % 1 >= 0.5 ? '<i class="fas fa-star-half-alt"></i>' : '');
     document.getElementById('detail-rating').innerHTML = `${location.rating.toFixed(1)} ${stars}`;
     
+    currentDetailLocation = location;
+
     document.getElementById('detail-description').textContent = location.description;
     
     loadGallery(location.photos);
@@ -562,3 +564,14 @@ window.addEventListener('resize', function() {
     map.invalidateSize();
 
 });
+
+function openLocationOnMaps() {
+    if (!currentDetailLocation) return;
+
+    const lat = currentDetailLocation.coords[0];
+    const lng = currentDetailLocation.coords[1];
+
+    // Otvorí Google Maps v novom okne
+    const url = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
+    window.open(url, '_blank');
+}

@@ -18,13 +18,9 @@ body {
 .filter-toggle {
     position: fixed;
     top: 20px;
-    left: 75px;
+    left: 20px;
     z-index: 1001;
-    padding: 12px 20px;
-    background: white;
-    border: none;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    padding: 800px 20px;
     cursor: pointer;
     font-size: 16px;
     color: #333;
@@ -84,7 +80,7 @@ body {
     cursor: pointer;
     padding: 5px;
     display: none;
-    transition: color 0.2s;
+    transition: all 0.3s;
 }
 
 #clear-search:hover {
@@ -418,6 +414,8 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
+
+
 /* Marker štýly */
 .custom-marker {
     position: relative;
@@ -729,22 +727,6 @@ body {
     z-index: 3002;
 }
 
-.detail-categories {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.detail-category-badge {
-    display: inline-block;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: 600;
-    background: #e3f2fd;
-    color: #1976d2;
-}
-
 /* Responzívny dizajn */
 @media (max-width: 768px) {
     .sidebar {
@@ -752,16 +734,9 @@ body {
         left: -100%;
     }
     
-    .filter-toggle {
-        top: 10px;
-        left: 10px;
-        padding: 10px 15px;
-        font-size: 14px;
-    }
-    
     .search-bar {
         top: 10px;
-        max-width: calc(100% - 100px);
+        max-width: calc(100% - 20px);
         left: 50%;
     }
     
@@ -807,4 +782,43 @@ body {
         max-width: 95%;
         max-height: 80%;
     }
+}
+
+.search-bar button{
+    background: none;
+    border: none;
+    color: #333;
+    transition: all 0.3s;
+}
+
+.search-bar button:hover{
+    transform: translateY(-2px);
+}
+
+.detail-categories {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.detail-category-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.detail-meta button{
+    background: none;
+    border: none;
+    color: #333;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.detail-meta button:hover{
+    transform: translateY(-2px);
 }
